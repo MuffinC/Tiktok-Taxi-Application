@@ -40,7 +40,7 @@ public class DriverLoginActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null){
                     //make sure user is logged in to move forward
-                    Intent intent = new Intent(DriverLoginActivity.this, MapActivity.class);
+                    Intent intent = new Intent(DriverLoginActivity.this, DriverMapsActivity.class);
                     startActivity(intent);
                     return;
                 }
