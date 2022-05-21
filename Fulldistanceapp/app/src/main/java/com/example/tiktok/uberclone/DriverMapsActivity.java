@@ -17,6 +17,7 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
     private GoogleMap mMap;
     private ActivityDriverMapsBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
