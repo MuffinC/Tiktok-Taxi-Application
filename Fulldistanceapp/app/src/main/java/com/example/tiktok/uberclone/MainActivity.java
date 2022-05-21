@@ -61,13 +61,14 @@ public class MainActivity extends AppCompatActivity {
         Dexter.withContext(this).withPermission(Manifest.permission.ACCESS_FINE_LOCATION).withListener(new PermissionListener() {
             @Override
             public void onPermissionGranted(PermissionGrantedResponse permissionGrantedResponse) {
+                //Will show a text that the app has been enabled for gps + location purposes
                 isPermissionGranted =true;
                 Toast.makeText(MainActivity.this, "Permission Granted",Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onPermissionDenied(PermissionDeniedResponse permissionDeniedResponse) {
-                //this will send the user to the setting of the application
+                //this will send the user to the settings of the application to enable the location services
                 Intent intent= new Intent();
                 intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
                 Uri uri= Uri.fromParts("package",getPackageName(),"");
@@ -77,6 +78,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPermissionRationaleShouldBeShown(PermissionRequest permissionRequest, PermissionToken permissionToken) {
+                //If it doesnt recognise it will still continue to prompt you
+                // This is because the entirity of the app functions on locational based logic
                 permissionToken.continuePermissionRequest();
             }
         }).check();
