@@ -1,11 +1,15 @@
 package com.example.tiktok.uberclone;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,7 +21,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.example.tiktok.uberclone.databinding.ActivityDriverMapsBinding;
 
-public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class DriverMapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private ActivityDriverMapsBinding binding;
@@ -37,15 +41,25 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
         mapFragment.getMapAsync(this);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.day2
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==R.id.noneMap){
+            mMap.setMapType(GoogleMap.MAP_TYPE_NONE);
+        }
+        if(item.getItemId()==R.id.NormalMap){
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -70,6 +84,7 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
         mMap.getUiSettings().setScrollGesturesEnabled(true);
         mMap.getUiSettings().setRotateGesturesEnabled(true);
 
+
         //My Location button
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -87,4 +102,5 @@ public class DriverMapsActivity extends FragmentActivity implements OnMapReadyCa
 
 
     }
+
 }

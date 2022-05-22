@@ -5,9 +5,12 @@
       <map>
         <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_customer_login.xml" value="0.13858695652173914" />
         <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_customer_login2.xml" value="0.12563323201621074" />
-        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_driver_login.xml" value="0.12545289855072464" />
-        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_driver_maps.xml" value="0.17831813576494426" />
+        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_driver_login.xml" value="0.33" />
+        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_driver_maps.xml" value="0.25" />
         <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_main.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_map.xml" value="0.25" />
+        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/layout/activity_taxi_comparator.xml" value="0.27239583333333334" />
+        <entry key="..\:/Users/mervy/OneDrive/Documents/GitHub/Tiktok-Taxi-Application/Fulldistanceapp/app/src/main/res/menu/menu.xml" value="0.2713541666666667" />
       </map>
     </option>
   </component>
