@@ -55,8 +55,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
 
 
+    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.github.niqo01.rxplayservices:rx-play-services-location:0.4.0'
+
+
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
+    // Full GeoFire library for Realtime Database users
+    implementation 'com.firebase:geofire-android:3.2.0'
+
+    // GeoFire utililty functions for Cloud Firestore users who
+    // want to implement their own geo solution, see:
+    // https://firebase.google.com/docs/firestore/solutions/geoqueries
+    implementation 'com.firebase:geofire-android-common:3.2.0'
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
