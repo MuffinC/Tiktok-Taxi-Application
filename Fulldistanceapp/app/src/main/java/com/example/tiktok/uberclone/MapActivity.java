@@ -14,6 +14,7 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.view.Menu;
@@ -63,11 +64,13 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     EditText inputLocation;
     com.google.android.gms.location.LocationRequest locationRequest;
     FusedLocationProviderClient fusedLocationProviderClient;
+    Location loc2= new Location("");
 
-    private Button mlogout;
 
+    private Button mlogout,mRequest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
@@ -83,7 +86,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
 
         //Logout button
         //TODO: The app crashes upon reentering the main activity. User is successfully logged out. Very likley due to gps function or android play services resulting in this. To fix if time allows
-        
         mlogout = (Button)findViewById(R.id.logout);
         mlogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +98,9 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return;
             }
         });
+
+
+
 
         //Searchbutton
         imageViewSearch.setOnClickListener(new View.OnClickListener() {
@@ -113,13 +118,50 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                             //^will be the user's current position
 
                             MarkerOptions markerOptions = new MarkerOptions();
-                            markerOptions.title("End point");
+                            markerOptions.title("Destination");
                             markerOptions.position(latLng);
                             googleMap.addMarker(markerOptions);
 
                             //Camera update
                             CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17f);
                             googleMap.animateCamera(cameraUpdate);
+
+                            //Savelocation will send the destination to geofire database
+                            mRequest= (Button)findViewById(R.id.request);
+                            mRequest.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+
+                                    //storing the location to geofire
+                                    String userid= FirebaseAuth.getInstance().getCurrentUser().getUid();//gets id of currently logged in user
+                                    DatabaseReference ref= FirebaseDatabase.getInstance().getReference("Destination");
+
+                                    GeoFire geoFire = new GeoFire(ref);
+                                    geoFire.setLocation(userid,new GeoLocation(latLng.latitude,latLng.longitude));
+                                    Toast.makeText(MapActivity.this,"Location Saved",Toast.LENGTH_SHORT).show();
+
+                                    Location loc1= new Location("");
+                                    loc1.setLongitude(latLng.latitude);
+                                    loc1.setLatitude(latLng.longitude);
+
+                                    //Insert distance calculation here!
+                                    float dist= (float) distance(loc1.getLatitude(),loc1.getLongitude(),loc2.getLatitude(),loc2.getLongitude());
+                                    Toast.makeText(MapActivity.this,""+ dist,Toast.LENGTH_SHORT).show();
+
+
+
+
+
+                                }
+                            });
+
+
+
+
+
+
+
+
                         }
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -158,11 +200,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             return;
         }
         googleMap.setMyLocationEnabled(true);
@@ -195,8 +233,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     private void CheckGps() {
         locationRequest = com.google.android.gms.location.LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-        locationRequest.setInterval(5000);
-        locationRequest.setFastestInterval(2000);
+        //locationRequest.setInterval(5000);
+        //locationRequest.setFastestInterval(2000);
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
                 .addAllLocationRequests(Collections.singleton(locationRequest))
@@ -257,6 +295,10 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 GeoFire geoFire = new GeoFire(ref);
                 geoFire.setLocation(userid,new GeoLocation(locationResult.getLastLocation().getLatitude(),locationResult.getLastLocation().getLongitude()));
 
+                //Set starting position to be where you are
+                loc2.setLongitude(locationResult.getLastLocation().getLongitude());
+                loc2.setLatitude(locationResult.getLastLocation().getLatitude());
+
             }
         }, Looper.getMainLooper());
     }
@@ -304,5 +346,29 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         GeoFire geoFire = new GeoFire(ref);
         geoFire.removeLocation(userid);
 
+    }
+
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        dist = dist * 1.609344;
+
+        return (dist);
+    }
+
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts decimal degrees to radians             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    /*::  This function converts radians to decimal degrees             :*/
+    /*:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*/
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
     }
 }
