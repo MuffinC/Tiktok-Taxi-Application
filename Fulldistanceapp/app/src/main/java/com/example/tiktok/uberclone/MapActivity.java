@@ -85,7 +85,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         supportMapFragment.getMapAsync(this);
 
         //Logout button
-        //TODO: The app crashes upon reentering the main activity. User is successfully logged out. Very likley due to gps function or android play services resulting in this. To fix if time allows
+        //TODO: The app crashes upon re-entering the main activity. User is successfully logged out. Very likley due to gps function or android play services resulting in this. To fix if time allows
         mlogout = (Button)findViewById(R.id.logout);
         mlogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,9 +98,6 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return;
             }
         });
-
-
-
 
         //Searchbutton
         imageViewSearch.setOnClickListener(new View.OnClickListener() {
