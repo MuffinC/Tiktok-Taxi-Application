@@ -145,19 +145,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                                     float dist= (float) distance(loc1.getLatitude(),loc1.getLongitude(),loc2.getLatitude(),loc2.getLongitude());
                                     Toast.makeText(MapActivity.this,""+ dist,Toast.LENGTH_SHORT).show();
 
-
-
-
-
                                 }
                             });
-
-
-
-
-
-
-
 
                         }
                     } catch (IOException e) {
