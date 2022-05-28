@@ -68,6 +68,10 @@ dependencies {
     // want to implement their own geo solution, see:
     // https://firebase.google.com/docs/firestore/solutions/geoqueries
     implementation 'com.firebase:geofire-android-common:3.2.0'
+
+    implementation 'androidx.navigation:navigation-ui:2.4.2'
+    implementation 'androidx.navigation:navigation-fragment:2.4.2'
+
 }
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
