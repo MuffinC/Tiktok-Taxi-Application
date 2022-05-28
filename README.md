@@ -2,6 +2,7 @@
 <strong>1. Tiktok Taxifare Distance Application</strong>
 
 <strong>2. Project Description</strong>
+
 This is the repositry for the TikTok Youth Camp 2022. Our Android application is able to register and users onto an online database(Firebase) and has also gelocating features with it(Geofire) with the use Google Maps. Aside from this, we have also created java functions to calculate the taxis prices based off the distance from several taxi companies like grab/comfortdelgro/uber etc.
 
 
@@ -9,6 +10,7 @@ Why do we need to store the data? simple, in the event that we require the need 
 
 
 A large challenge we face was the integration of functionality with the ui/ux of android studio. Additionally, the debugging process has 2-3 times the layers of a convential program. It was hard to identify the issue and rememdy it.
+
 
 
 <strong>3. How to Install and run the program</strong>
