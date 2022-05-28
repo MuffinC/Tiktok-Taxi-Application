@@ -1,4 +1,4 @@
-package com.example.tiktok.uberclone;
+package com.example.navdrawer2;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.sql.Driver;
-
-public class DriverLoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private EditText memail, mpassword;
     private Button mlogin,mregistration;
 
@@ -30,7 +28,7 @@ public class DriverLoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_driver_login);
+        setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -40,14 +38,14 @@ public class DriverLoginActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if(user!=null){
                     //make sure user is logged in to move forward
-                    Intent intent = new Intent(DriverLoginActivity.this, DriverMapsActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, MapActivity.class);
                     startActivity(intent);
                     return;
                 }
             }
         };
 
-        memail = (EditText) findViewById(R.id.Email);
+        memail = (EditText) findViewById(R.id.email);
         mpassword= (EditText) findViewById(R.id.Password);
 
         mlogin = (Button) findViewById(R.id.Login);
@@ -58,16 +56,16 @@ public class DriverLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email =memail.getText().toString();
                 final String password =mpassword.getText().toString();
-                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(DriverLoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
                             //when login fails
-                            Toast.makeText(DriverLoginActivity.this,"Sign up error",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Sign up error",Toast.LENGTH_SHORT).show();
                         }else{
                             //when it is in authentication database in firebase
                             String user_id = mAuth.getCurrentUser().getUid();
-                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("Drivers").child(user_id);
+                            DatabaseReference current_user_db = FirebaseDatabase.getInstance().getReference().child("Users").child("Customers").child(user_id);
                             current_user_db.setValue(true);
                         }
                     }
@@ -81,12 +79,12 @@ public class DriverLoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 final String email =memail.getText().toString();
                 final String password =mpassword.getText().toString();
-                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(DriverLoginActivity.this, new OnCompleteListener<AuthResult>() {
+                mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(!task.isSuccessful()){
                             //when login fails
-                            Toast.makeText(DriverLoginActivity.this,"Login error",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this,"Login error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
