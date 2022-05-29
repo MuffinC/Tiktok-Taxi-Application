@@ -9,9 +9,6 @@ This is the repositry for the TikTok Youth Camp 2022. Our Android application is
 Why do we need to store the data? simple, in the event that we require the need to do constant location tracking, we can always request locational updates to the app and the longitude and latitude and store the new values to the database. With this new data we can the recaluclate the chanigng distance. 
 
 
-A large challenge we face was the integration of functionality with the ui/ux of android studio. Additionally, the debugging process has 2-3 times the layers of a convential program. It was hard to identify the issue and rememdy it.
-
-
 
 <strong>3. How to Install and run the program</strong>
 
