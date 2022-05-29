@@ -35,20 +35,16 @@ public class Comparer extends AppCompatActivity {
                 float distance=intdistance.floatValue();
 
 
-               // float delgro_fare_amount = delgro_func(distance);
+                float delgro_fare_amount = delgro_func(distance);
                 float gojek_fare_amount = gojek_func(distance);
                 float grab_fare_amount = grab_func(distance);
 
-                //delgrores.setText("   S$ " +delgro_fare_amount);
+                delgrores.setText("   S$ " +delgro_fare_amount);
                 gojekres.setText("   S$ " +gojek_fare_amount);
                 grabres.setText("   S$ " +grab_fare_amount);
 
             }
         });
-
-
-
-
 
     }
     public float gojek_func(float x){
@@ -61,10 +57,10 @@ public class Comparer extends AppCompatActivity {
         return price;
     }
 
-    public float grab_func(float y){
+    float grab_func(float y){
         float price = 0;
         if (y >= 4.72){
-            price = (float) ((0.65*y)+2.7);
+            price = (float) ((0.50*y)+2.5);
         } else if (y < 4.72 & y > 0) {
             price = 6;
         }
@@ -72,36 +68,15 @@ public class Comparer extends AppCompatActivity {
     }
 
     public float delgro_func(float dist){ //distance in km
-
-        float distLeft = dist;
-        float fare= 0;
-
-        if (distLeft <= 0){
-            fare = 0;
+        float price = 0;
+        if (dist <= 1){
+            price = (float) 4.10;
+        } else if (dist > 1 & dist <= 10){
+            price = (float) (4.10 + ((dist-10)/0.45 * 0.24));
+        } else if (dist > 10){
+            price = (float) (4.10 + (10/0.45)*0.24 + ((dist-11)/0.45*0.24));
         }
+        return price;
 
-        if (distLeft <= 1){
-            fare = (float) 4.10;
-            return fare;
-        }
-
-        // more than 1km
-        distLeft -= 1;
-        fare = (float) 4.10;
-
-        // dist - distLeft represents distance covered
-        while((distLeft != 0) && ((dist - distLeft) <= 10) ){
-            fare += 0.24;
-            distLeft -= 400;
-        }
-
-        //change in charge after 10km
-        while(distLeft != 0){
-            fare += 0.24;
-            distLeft -= 350;
-        }
-
-        return fare;
-    }
-
+}
 }
