@@ -1,0 +1,56 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/Distancein"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:text="input_distance" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/comfortdelgro" />
+
+    <TextView
+        android:id="@+id/delgrores"
+        android:layout_width="match_parent"
+        android:layout_height="53dp"
+        android:text="@string/comfortdelgrocalc" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="@string/Gojek" />
+
+    <TextView
+        android:id="@+id/gojekres"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="@string/gojekcalc" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/Grab" />
+
+    <TextView
+        android:id="@+id/grabres"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="@string/grabcalc" />
+
+    <Button
+        android:id="@+id/Send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/calculate" />
+
+</LinearLayout>

@@ -67,7 +67,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     Location loc2= new Location("");
 
 
-    private Button mlogout,mRequest;
+    private Button mlogout,mRequest,mCalculate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -98,6 +98,20 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                 return;
             }
         });
+
+        mCalculate = (Button)findViewById(R.id.Calculate);
+        mCalculate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Then go back to main act
+                Intent intent2 = new Intent(MapActivity.this,Comparer.class);
+                startActivity(intent2);
+                finish();
+                return;
+            }
+        });
+
+
 
         //Searchbutton
         imageViewSearch.setOnClickListener(new View.OnClickListener() {
@@ -290,7 +304,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode==101){
             if(resultCode==RESULT_OK){

@@ -32,7 +32,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputLocation" />
+        app:layout_constraintTop_toBottomOf="@+id/inputLocation" >
+
+
+    </FrameLayout>
 
     <Button
         android:id="@+id/logout"
@@ -48,8 +51,15 @@
         android:layout_height="wrap_content"
         android:text="Save Location"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Calculate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate Distance"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 

@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Uberclone</string>
     <string name="title_activity_driver_maps">DriverMapsActivity</string>
+    <string name="the_fare_comparison_is">The Fare Comparison is:</string>
+    <string name="comfort_delgro">Comfort Delgro</string>
+    <string name="delgrofare">delgrofare</string>
+    <string name="gojek">Gojek</string>
+    <string name="gojekfare">gojekfare</string>
+    <string name="grab">Grab</string>
+    <string name="grabfare">grabfare</string>
+    <string name="input_distance">Input Distance</string>
+    <string name="comfortdelgro">ComfortDelgro</string>
+    <string name="comfortdelgrocalc">ComfortDelgroCalc</string>
+    <string name="Gojek">Gojek</string>
+    <string name="gojekcalc">GojekCalc</string>
+    <string name="Grab">Grab</string>
+    <string name="grabcalc">GrabCalc</string>
+    <string name="calculate">Calculate</string>
 </resources>
